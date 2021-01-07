@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--数据源-->
+    <bean id="dataSource"
+          class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="username" value="root" />
+        <property name="password" value="123456" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/czjk" />
+    </bean>
+    <!--spring和mybatis整合的工厂bean-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--这个name可以随便起名吗-->
+        <property name="dataSource" ref="dataSource" />
+        <!--    引入mybatis的配置文件     -->
+        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
+        <!--使用别名-->
+<!--没有此文件会怎么样-->
+        <property name="typeAliasesPackage" value="com.sun.czjkxm.pojo"></property>
+    </bean>
+    <!--批量扫描接口生成代理对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定接口所在的包-->
+<!--没有写这个包会怎么样-->
+        <property name="basePackage" value="com.sun.czjkxm.dao" />
+    </bean>
+</beans>
