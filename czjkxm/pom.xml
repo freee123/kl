@@ -15,6 +15,7 @@
         <module>czjkxm_interface</module>
         <module>czjkxm_service</module>
         <module>czjkxm_web</module>
+        <module>czjkxm_jobs</module>
     </modules>
 
 

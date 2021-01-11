@@ -77,8 +77,6 @@ public class CheckGroupServiceImpl implements CheckGroupService {
      */
     @Override
     public List<Integer> findCheckItemIdsByCheckGroupId(int id) {
-
-
         return checkGroupDao.findCheckItemIdsByCheckGroupId(id);
     }
 
@@ -101,5 +99,27 @@ public class CheckGroupServiceImpl implements CheckGroupService {
                 checkGroupDao.addCheckGroupCheckItem(checkGroup.getId(),checkitemId);
             }
         }
+    }
+
+    /**
+     * 删除检查组
+     * @param id
+     */
+    @Override
+    @Transactional//事务控制
+    public void delete(int id) {
+        //删除检查组与检查项之间的关系
+        checkGroupDao.deleteCheckGroupCheckItem(id);
+        //删除检查组
+        checkGroupDao.delete(id);
+    }
+
+    /**
+     * 搜索所有检查组
+     * @return
+     */
+    @Override
+    public List<CheckGroup> findAll() {
+        return checkGroupDao.findAll();
     }
 }

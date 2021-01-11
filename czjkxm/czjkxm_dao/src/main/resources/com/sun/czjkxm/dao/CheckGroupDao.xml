@@ -52,4 +52,14 @@
     <select id="findById" parameterType="int" resultType="checkgroup">
         select * from t_checkgroup where id=#{id}
     </select>
+
+    <!--删除检查组-->
+    <delete id="delete" parameterType="int">
+        delete from t_checkgroup where id=#{id}
+    </delete>
+
+    <!--搜索所有检查组-->
+    <select id="findAll" resultType="checkgroup">
+      select * from t_checkgroup
+    </select>
 </mapper>

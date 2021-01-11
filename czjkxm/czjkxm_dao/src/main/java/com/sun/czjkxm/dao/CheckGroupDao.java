@@ -53,4 +53,16 @@ public interface CheckGroupDao {
      * @return
      */
     CheckGroup findById(int id);
+
+    /**
+     * 删除检查组
+     * @param id
+     */
+    void delete(int id);
+
+    /**
+     * 搜索所有检查组
+     * @return
+     */
+    List<CheckGroup> findAll();
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sun.czjkxm.dao.OrderSettingDao">
+    <!-- 根据日期查询-->
+    <!--OrderSetting findByOrderDate(Date orderDate);-->
+    <select id="findByOrderDate" parameterType="date" resultType="ordersetting">
+      select* from t_ordersetting where orderDate=#{orderDate,jdbcType=DATE}
+    </select>
+
+    <!-- 添加预约设置-->
+    <!--void add(OrderSetting osInDB);-->
+    <insert id="add" parameterType="orderSetting">
+      insert into t_ordersetting (orderDate,number,reservations)
+      values (#{orderDate,jdbcType=DATE},#{number},#{reservations})
+    </insert>
+
+    <!-- 更新-->
+    <!--void updateNumber(int newReservations);-->
+    <update id="updateNumber" parameterType="Ordersetting">
+      update t_ordersetting set number = #{number} where orderDate=#{orderDate,jdbcType=DATE}
+    </update>
+
+    <!--根据月份查询预约情况-->
+    <select id="getOrderSettingByMonth" parameterType="string" resultType="map">
+        select cast(DATE_FORMAT(orderdate,'%d') AS SIGNED) date,number,reservations
+        from t_ordersetting where orderDate like #{monte}
+    </select>
+</mapper>

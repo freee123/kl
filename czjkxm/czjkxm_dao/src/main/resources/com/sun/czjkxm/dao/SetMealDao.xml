@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sun.czjkxm.dao.SetMealDao">
+    <!--有条件的查询-->
+    <select id="findByCondition" parameterType="string" resultType="setmeal">
+      select * from t_setmeal
+      <where>
+          <if test="value != null and value.length > 0">
+              code like #{queryString} or name like #{queryString} or helpCode like #{queryString}
+          </if>
+      </where>
+    </select>
+
+    <!--添加套餐项-->
+    <insert id="add" parameterType="setmeal" keyProperty="id" useGeneratedKeys="true">
+      insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img)
+      values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+    </insert>
+
+    <!--添加套餐项与检查项的关系-->
+    <insert id="addSetMealCheckGroup">
+      insert into t_setmeal_checkgroup(setmeal_id,checkgroup_id)
+      values(#{setmealId},#{checkgroupId})
+    </insert>
+
+    <!--删除检查套餐-->
+    <delete id="deletById" parameterType="int">
+      delete from t_setmeal where id=#{id}
+    </delete>
+
+    <!--删除检查套餐和检擦组的关系-->
+    <delete id="deleteSetmealCheckGroup" parameterType="int">
+      delete from t_setmeal_checkgroup where setmeal_id=#{id}
+    </delete>
+
+        <!--price=#{price},-->
+
+    <!--根据id获取套餐信息-->
+    <select id="findById" parameterType="int" resultType="setmeal">
+      select * from t_setmeal where id = #{id}
+    </select>
+
+    <!--根据id找到对应套餐所拥有的检查组的id-->
+    <select id="findCheckGroupIdsBySetmealId" parameterType="int" resultType="int">
+      select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{id}
+    </select>
+
+    <!--更新套餐信息-->
+    <update id="update" parameterType="setmeal">
+      update t_setmeal
+      set
+        name=#{name},
+        code=#{code},
+        helpCode=#{helpCode},
+        sex=#{sex},
+        remark=#{remark},
+        attention=#{attention},
+        img=#{img}
+      where id=#{id}
+    </update>
+
+    <!--查询套餐中所有使用了的图片-->
+    <select id="findImgs" resultType="string">
+        select img from t_setmeal
+    </select>
+</mapper>

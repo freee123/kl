@@ -15,7 +15,7 @@ public interface MessageConstant {
     static final String UPLOAD_SUCCESS = "上传成功";
     static final String ADD_CHECKGROUP_FAIL = "新增检查组失败";
     static final String ADD_CHECKGROUP_SUCCESS = "新增检查组成功";
-    static final String DELETE_CHECKGROUP_FAIL = "删除检查组失败";
+    static final String DELETE_CHECKGROUP_FAILDELETE_CHECKGROUP_FAIL = "删除检查组失败";
     static final String DELETE_CHECKGROUP_SUCCESS = "删除检查组成功";
     static final String QUERY_CHECKGROUP_SUCCESS = "查询检查组成功";
     static final String QUERY_CHECKGROUP_FAIL = "查询检查组失败";
@@ -46,6 +46,7 @@ public interface MessageConstant {
     static final String QUERY_SETMEALLIST_FAIL = "查询套餐列表数据失败";
     static final String QUERY_SETMEAL_SUCCESS = "查询套餐数据成功";
     static final String QUERY_SETMEAL_FAIL = "查询套餐数据失败";
+    static final String DELETE_SETMEAL_SUCCESS = "删除套餐数据成功";
     static final String SEND_VALIDATECODE_FAIL = "验证码发送失败";
     static final String SEND_VALIDATECODE_SUCCESS = "验证码发送成功";
     static final String SELECTED_DATE_CANNOT_ORDER = "所选日期不能进行体检预约";
