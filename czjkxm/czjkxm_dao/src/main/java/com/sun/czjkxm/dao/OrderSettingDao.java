@@ -33,4 +33,6 @@ public interface OrderSettingDao {
      * @return
      */
     List<Map<String, Integer>> getOrderSettingByMonth(String month);
+
+    int editReservationsByOrderDate(OrderSetting osInDB);
 }

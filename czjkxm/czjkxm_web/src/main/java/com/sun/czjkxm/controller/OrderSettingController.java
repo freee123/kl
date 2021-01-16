@@ -9,14 +9,12 @@ import com.sun.czjkxm.utils.POIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 //import sun.rmi.runtime.Log;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -80,5 +78,24 @@ public class OrderSettingController {
         //按月查询预约设置信息
         List<Map<String,Integer>> data = orderSettingService.getOrderSettingByMonth(month);
         return new Result(true, MessageConstant.GET_ORDERSETTING_SUCCESS, data);
+    }
+
+    /**
+     * 通过月份单例设计
+     */
+    @PostMapping("/editNumberByDate")
+    public Result editNumberByDate(@RequestBody OrderSetting orderSetting){
+        //调用服务更新
+        try {
+            orderSettingService.editNumberByDate(orderSetting);
+            return new Result(true, MessageConstant.ORDERSETTING_SUCCESS);
+        } catch (IOException e) {
+            log.error("导入预约设置失败",e);
+            //e.printStackTrace();
+            return new Result(false, MessageConstant.IMPORT_ORDERSETTING_FAIL);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "人数问题");
+        }
     }
 }

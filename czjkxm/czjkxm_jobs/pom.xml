@@ -27,5 +27,12 @@
             <artifactId>quartz-jobs</artifactId>
             <version>2.2.1</version>
         </dependency>
+        <!--可能是关于静态页面的-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
     </dependencies>
+
 </project>

@@ -106,4 +106,5 @@ public class Member implements Serializable{
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
 }

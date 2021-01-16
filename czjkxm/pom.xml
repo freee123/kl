@@ -16,6 +16,7 @@
         <module>czjkxm_service</module>
         <module>czjkxm_web</module>
         <module>czjkxm_jobs</module>
+        <module>czjkxm_mobile</module>
     </modules>
 
 
@@ -200,6 +201,17 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-taglibs</artifactId>
                 <version>${spring.security.version}</version>
+            </dependency>
+            <!--阿里云服务器短信平台-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -66,4 +66,29 @@ public class OrderSettingServiceImpl implements OrderSettingService {
         return orderSettingDao.getOrderSettingByMonth(month);
     }
 
+    /**
+     * 通过月份设置单个月份的预约设置
+     * @param orderSetting
+     */
+    @Override
+    public void editNumberByDate(OrderSetting orderSetting) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        OrderSetting byOrderDate = orderSettingDao.findByOrderDate(orderSetting.getOrderDate());
+
+        if (null==byOrderDate) {
+            //调用dao插入数据
+            orderSettingDao.add(byOrderDate);
+        }else{
+            //更新数据
+            int oldReservations = byOrderDate.getReservations();
+            int newSetting = orderSetting.getNumber();
+            if (oldReservations>newSetting) {
+                //不可修改
+                throw new Exception("人数问题");
+            }else{
+                //可以修改
+                orderSettingDao.updateNumber(orderSetting);
+            }
+        }
+    }
 }
